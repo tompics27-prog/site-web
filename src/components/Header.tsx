@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface HeaderProps {
     activeSection: string;
@@ -6,6 +6,20 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const navItems = [
+        { key: 'home', label: 'Accueil' },
+        { key: 'about', label: 'Qui sommes nous ?' },
+        { key: 'concerts', label: 'Événements' },
+        { key: 'contact', label: 'Nous contacter' }
+    ];
+
+    const handleItemClick = (key: string) => {
+        onSectionChange(key);
+        setIsMenuOpen(false);
+    };
+
     return (
         <header className="header">
             <div className="header-container">
@@ -13,31 +27,28 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
                     <img src="/logo.png" alt="Le Repaire Expériences" className="logo-image" />
                 </div>
 
-                <nav className="navigation">
-                    <button
-                        className={`nav-button ${activeSection === 'home' ? 'active' : ''}`}
-                        onClick={() => onSectionChange('home')}
-                    >
-                        Accueil
-                    </button>
-                    <button
-                        className={`nav-button ${activeSection === 'about' ? 'active' : ''}`}
-                        onClick={() => onSectionChange('about')}
-                    >
-                        Qui sommes nous ?
-                    </button>
-                    <button
-                        className={`nav-button ${activeSection === 'concerts' ? 'active' : ''}`}
-                        onClick={() => onSectionChange('concerts')}
-                    >
-                        Événements
-                    </button>
-                    <button
-                        className={`nav-button ${activeSection === 'contact' ? 'active' : ''}`}
-                        onClick={() => onSectionChange('contact')}
-                    >
-                        Nous contacter
-                    </button>
+                <button
+                    type="button"
+                    className={`mobile-menu-toggle ${isMenuOpen ? 'open' : ''}`}
+                    aria-label="Ouvrir le menu"
+                    aria-expanded={isMenuOpen}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    <span />
+                    <span />
+                    <span />
+                </button>
+
+                <nav className={`navigation ${isMenuOpen ? 'mobile-open' : ''}`} aria-label="Navigation principale">
+                    {navItems.map((item) => (
+                        <button
+                            key={item.key}
+                            className={`nav-button ${activeSection === item.key ? 'active' : ''}`}
+                            onClick={() => handleItemClick(item.key)}
+                        >
+                            {item.label}
+                        </button>
+                    ))}
                 </nav>
             </div>
         </header>
