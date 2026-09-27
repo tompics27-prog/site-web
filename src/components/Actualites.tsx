@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 interface ActualitesProps {
     onSectionChange: (section: string, eventName?: string) => void;
@@ -72,6 +72,7 @@ const artists = [
 
 const Actualites: React.FC<ActualitesProps> = ({ onSectionChange }) => {
     const [activeArtist, setActiveArtist] = useState('Céline Dion');
+    const eventsGalleryRef = useRef<HTMLDivElement>(null);
     const selectedArtist = artists.find((artist) => artist.name === activeArtist) || artists[0];
 
     return (
@@ -79,10 +80,21 @@ const Actualites: React.FC<ActualitesProps> = ({ onSectionChange }) => {
             <div className="actualites-header">
                 <div className="container">
                     <h2 className="actualites-title">♫ Événements disponibles</h2>
+                    <div className="actualites-scroll-hint">
+                        <span>Glissez pour voir la suite</span>
+                        <button
+                            type="button"
+                            aria-label="Voir les événements suivants"
+                            aria-controls="events-gallery"
+                            onClick={() => eventsGalleryRef.current?.scrollBy({ left: 200, behavior: 'smooth' })}
+                        >
+                            <span aria-hidden="true">›</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div className="container actualites-grid">
+            <div className="container actualites-grid" id="events-gallery" ref={eventsGalleryRef}>
                 {artists.map((artist) => (
                     <button
                         key={artist.name}

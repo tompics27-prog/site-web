@@ -503,6 +503,10 @@ main {
     display: inline-block;
 }
 
+.actualites-scroll-hint {
+    display: none;
+}
+
 .actualites-grid {
     display: flex;
     gap: 20px;
@@ -959,7 +963,7 @@ main {
     font-size: 0.95rem;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
+    color: #d4a434;
 }
 
 .hero h1 {
@@ -1257,6 +1261,16 @@ main {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .home-page {
+        background: linear-gradient(135deg, #111522 0%, #202334 100%);
+    }
+
+    .home-page .hero,
+    .home-page .conciergerie-section,
+    .home-page .footer-section {
+        background: transparent;
+    }
+
     .header {
         min-height: 60px;
     }
@@ -1336,6 +1350,7 @@ main {
     }
 
     .hero {
+        background: transparent;
         min-height: 58vh;
         padding: 76px 18px 52px;
     }
@@ -1378,9 +1393,46 @@ main {
         font-size: 30px;
     }
 
+    .actualites-header .actualites-title {
+        max-width: 100%;
+        font-size: clamp(0.78rem, 4.2vw, 1.35rem);
+        white-space: nowrap;
+    }
+
+    .actualites-scroll-hint {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 14px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.82rem;
+    }
+
+    .actualites-scroll-hint button {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #d4a434;
+        color: #101325;
+        font-family: sans-serif;
+        font-size: 1.8rem;
+        line-height: 1;
+    }
+
     .actualites-grid {
         gap: 14px;
         padding: 12px 0 18px;
+    }
+
+    .about-text h3 {
+        font-size: clamp(0.82rem, 4vw, 1.1rem);
+        white-space: nowrap;
     }
 
     .actualites-card {

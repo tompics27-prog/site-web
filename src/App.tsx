@@ -52,7 +52,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="app">
+        <div className={`app ${activeSection === 'home' ? 'home-page' : ''}`}>
             <Header activeSection={activeSection} onSectionChange={(section) => handleSectionChange(section)} />
             <main>
                 {activeSection === 'home' ? (

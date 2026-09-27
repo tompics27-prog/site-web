@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onSectionChange }) => {
                 </div>
 
                 <div className="footer-card footer-service-card">
-                    <p className="footer-kicker">Service premium</p>
+                    <p className="footer-kicker">Service</p>
                     <h3>Réservation sur mesure</h3>
                     <p>Nous trouvons les meilleures places pour vos événements préférés, même quand la billetterie est complète.</p>
                     <button
