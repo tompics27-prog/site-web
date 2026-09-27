@@ -80,47 +80,48 @@ const Actualites: React.FC<ActualitesProps> = ({ onSectionChange }) => {
             <div className="actualites-header">
                 <div className="container">
                     <h2 className="actualites-title">♫ Événements disponibles</h2>
-                    <div className="actualites-scroll-hint">
-                        <span>Glissez pour voir la suite</span>
-                        <button
-                            type="button"
-                            aria-label="Voir les événements suivants"
-                            aria-controls="events-gallery"
-                            onClick={() => eventsGalleryRef.current?.scrollBy({ left: 200, behavior: 'smooth' })}
-                        >
-                            <span aria-hidden="true">›</span>
-                        </button>
-                    </div>
                 </div>
             </div>
 
-            <div className="container actualites-grid" id="events-gallery" ref={eventsGalleryRef}>
-                {artists.map((artist) => (
+            <div className="actualites-gallery">
+                <div className="container actualites-grid" id="events-gallery" ref={eventsGalleryRef}>
+                    {artists.map((artist) => (
+                        <button
+                            key={artist.name}
+                            type="button"
+                            onClick={() => setActiveArtist(artist.name)}
+                            className={`actualites-card ${activeArtist === artist.name ? 'actualites-card-active' : ''}`}
+                            aria-pressed={activeArtist === artist.name}
+                        >
+                            <img
+                                src={artist.image}
+                                alt={`Affiche ${artist.name}`}
+                                className="actualites-image"
+                            />
+                        </button>
+                    ))}
+
                     <button
-                        key={artist.name}
                         type="button"
-                        onClick={() => setActiveArtist(artist.name)}
-                        className={`actualites-card ${activeArtist === artist.name ? 'actualites-card-active' : ''}`}
-                        aria-pressed={activeArtist === artist.name}
+                        className="actualites-card actualites-card-custom"
+                        aria-label="Tous autres concerts sur commande"
+                        onClick={() => onSectionChange('contact')}
                     >
-                        <img
-                            src={artist.image}
-                            alt={`Affiche ${artist.name}`}
-                            className="actualites-image"
-                        />
+                        <div className="actualites-custom-card">
+                            <span>Tous autres concerts</span>
+                            <strong>sur commande</strong>
+                        </div>
                     </button>
-                ))}
+                </div>
 
                 <button
                     type="button"
-                    className="actualites-card actualites-card-custom"
-                    aria-label="Tous autres concerts sur commande"
-                    onClick={() => onSectionChange('contact')}
+                    className="actualites-next-button"
+                    aria-label="Voir les événements suivants"
+                    aria-controls="events-gallery"
+                    onClick={() => eventsGalleryRef.current?.scrollBy({ left: 200, behavior: 'smooth' })}
                 >
-                    <div className="actualites-custom-card">
-                        <span>Tous autres concerts</span>
-                        <strong>sur commande</strong>
-                    </div>
+                    <span aria-hidden="true">›</span>
                 </button>
             </div>
 

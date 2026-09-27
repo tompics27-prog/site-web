@@ -503,10 +503,6 @@ main {
     display: inline-block;
 }
 
-.actualites-scroll-hint {
-    display: none;
-}
-
 .actualites-grid {
     display: flex;
     gap: 20px;
@@ -515,6 +511,10 @@ main {
     overflow-x: auto;
     flex-wrap: nowrap;
     justify-content: flex-start;
+}
+
+.actualites-next-button {
+    display: none;
 }
 
 .actualites-card {
@@ -1395,21 +1395,25 @@ main {
 
     .actualites-header .actualites-title {
         max-width: 100%;
-        font-size: clamp(0.78rem, 4.2vw, 1.35rem);
+        font-size: clamp(1rem, 5vw, 1.35rem);
         white-space: nowrap;
     }
 
-    .actualites-scroll-hint {
+    .actualites-gallery {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-top: 14px;
-        color: rgba(255, 255, 255, 0.82);
-        font-size: 0.82rem;
+        gap: 8px;
+        padding: 0 12px;
     }
 
-    .actualites-scroll-hint button {
+    .actualites-gallery .actualites-grid {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        margin: 0;
+    }
+
+    .actualites-next-button {
         display: grid;
         place-items: center;
         width: 38px;
@@ -1428,6 +1432,17 @@ main {
     .actualites-grid {
         gap: 14px;
         padding: 12px 0 18px;
+    }
+
+    .actualites-about h3 {
+        font-size: 1.25rem;
+        margin-bottom: 14px;
+    }
+
+    .actualites-about p {
+        font-size: 0.875rem;
+        line-height: 1.65;
+        margin-bottom: 14px;
     }
 
     .about-text h3 {
